@@ -153,10 +153,10 @@ TRY_TO_INSTANTIATE_PROPERTY_ROUTINE_NAME (BUILTIN_UNDERSCORED_ID) (ecma_object_t
   if (mask_prop_p == NULL)
   {
     mask_prop_p = ecma_create_internal_property (obj_p, mask_prop_id);
-    mask_prop_p->u.internal_property.value = 0;
+    mask_prop_p->v.internal_property.value = 0;
   }
 
-  uint32_t bit_mask = mask_prop_p->u.internal_property.value;
+  uint32_t bit_mask = mask_prop_p->v.internal_property.value;
 
   if (bit_mask & bit)
   {
@@ -165,7 +165,7 @@ TRY_TO_INSTANTIATE_PROPERTY_ROUTINE_NAME (BUILTIN_UNDERSCORED_ID) (ecma_object_t
 
   bit_mask |= bit;
 
-  mask_prop_p->u.internal_property.value = bit_mask;
+  mask_prop_p->v.internal_property.value = bit_mask;
 
   ecma_value_t value = ecma_make_simple_value (ECMA_SIMPLE_VALUE_EMPTY);
   ecma_property_writable_value_t writable;
@@ -346,7 +346,7 @@ LIST_LAZY_PROPERTY_NAMES_ROUTINE_NAME (BUILTIN_UNDERSCORED_ID) (ecma_object_t *o
     }
     else
     {
-      uint32_t bit_mask = mask_prop_p->u.internal_property.value;
+      uint32_t bit_mask = mask_prop_p->v.internal_property.value;
 
       if (bit_mask & bit)
       {
